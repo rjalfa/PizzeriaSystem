@@ -1,10 +1,61 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>New Order</title>
-</head>
-<body>
-<h1>New Order</h1>
-</body>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="shortcut icon" href="http://www.google.com/s2/favicons?domain=www.iiitd.ac.in" type="image/x-icon">
+		<title>New Order &#8226; PizzeriaSystem</title>
+	</head>
+
+	<body>
+		<h1>Please select your order:</h1>
+		<form method="post" action="./CreateOrder">
+			<table>
+				<tr>
+					<td>Cheese Margherita</td>
+					<td>&emsp;&emsp; Size: 
+						<select name="mg-size">
+						  <option value="small">Small</option>
+						  <option value="medium">Medium</option>
+						  <option value="large">Large</option>
+						</select>					
+					</td>
+					<td>&emsp;&emsp; Quantity: <input type="number" min="0" value="0" name="mg" style="border:0px;width:35px;"><br/></td>
+				</tr>
+				<tr>
+					<td>Pepperoni Pizza</td>
+					<td>&emsp;&emsp; Size: 
+						<select name="pep-size">
+						  <option value="small">Small</option>
+						  <option value="medium">Medium</option>
+						  <option value="large">Large</option>
+						</select>					
+					</td>
+					<td>&emsp;&emsp; Quantity: <input type="number" min="0" value="0" name="pep" style="border:0px;width:35px;"><br/></td>
+				</tr>
+				<tr>
+					<td>Farmhouse</td>
+					<td>&emsp;&emsp; Size: 
+						<select name="fh-size">
+						  <option value="small">Small</option>
+						  <option value="medium">Medium</option>
+						  <option value="large">Large</option>
+						</select>					
+					</td>
+					<td>&emsp;&emsp; Quantity: <input type="number" min="0" value="0" name="fh" style="border:0px;width:35px;"><br/></td>
+				</tr>
+				<tr>
+					<td>Moster Deep Dish</td>
+					<td>&emsp;&emsp; Size: 
+						<select name="dd-size">
+						  <option value="small">Small</option>
+						  <option value="medium">Medium</option>
+						  <option value="large">Large</option>
+						</select>					
+					</td>
+					<td>&emsp;&emsp; Quantity: <input type="number" min="0" value="0" name="dd" style="border:0px;width:35px;"><br/></td>
+				</tr>
+			</table>
+			<input type="submit" value="Place Order">
+		</form>
+	</body>
 </html>
