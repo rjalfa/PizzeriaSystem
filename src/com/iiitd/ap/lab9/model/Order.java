@@ -1,10 +1,10 @@
 package com.iiitd.ap.lab9.model;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Order {
 	private int id;
-	private ArrayList<Pizza> orders = new ArrayList<>();
+	private HashMap<Pizza,Integer> orders = new HashMap<>();
 	private Customer customer = new Customer();
 	
 	public int getId() {
@@ -13,10 +13,10 @@ public class Order {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public ArrayList<Pizza> getOrders() {
+	public HashMap<Pizza,Integer> getOrders() {
 		return orders;
 	}
-	public void setOrders(ArrayList<Pizza> orders) {
+	public void setOrders(HashMap<Pizza,Integer> orders) {
 		this.orders = orders;
 	}
 	public Customer getCustomer() {
