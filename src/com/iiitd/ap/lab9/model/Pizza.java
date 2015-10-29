@@ -9,14 +9,14 @@ package com.iiitd.ap.lab9.model;
 public class Pizza
 {
 	private String toppings;
-	private int size;
+	private String size;
 	
-	public Pizza(String toppings, int size)
+	public Pizza(String toppings, String size)
 	{
 		this.toppings = toppings;
 		this.size = size;
 	}
-
+	
 	public String getToppings() {
 		return toppings;
 	}
@@ -25,11 +25,11 @@ public class Pizza
 		this.toppings = toppings;
 	}
 
-	public int getSize() {
+	public String getSize() {
 		return size;
 	}
 
-	public void setSize(int size) {
+	public void setSize(String size) {
 		this.size = size;
 	}
 }

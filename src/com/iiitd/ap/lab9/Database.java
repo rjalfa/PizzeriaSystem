@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import com.iiitd.ap.lab9.model.Customer;
 import com.iiitd.ap.lab9.model.Order;
+import com.iiitd.ap.lab9.model.Pizza;
 
 public final class Database {
 	static private ArrayList<Customer> users = new ArrayList<>();
@@ -29,7 +30,12 @@ public final class Database {
 	
 	public static Order createOrder(Order order,HashMap<String,String[]> h)
 	{
-		
+		HashMap<Pizza,Integer> H = order.getOrders();
+		for(String key : h.keySet())
+		{
+			String[] a = h.get(key);
+			H.put(new Pizza(a[2],a[0]),Integer.parseInt(a[1]));
+		}
 		return order;
 	}
 	
