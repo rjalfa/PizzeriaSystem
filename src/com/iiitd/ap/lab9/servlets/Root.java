@@ -1,11 +1,15 @@
 package com.iiitd.ap.lab9.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.iiitd.ap.lab9.model.*;
 
 /**
  * Servlet implementation class Root
@@ -26,9 +30,37 @@ public class Root extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		ArrayList<Order> orders = new ArrayList<>();
+		
 		response.getWriter().println("<h1>Welcome Admin!</h1>");
 		response.getWriter().println("<h2>View currently placed orders here:</h2>");
+		response.getWriter().println("<table><tr><th>Order ID</th><th>Pizzas</th><th>State</th><th>Update</th></tr>");
+//		response.getBufferSize();
+		for(Order order: orders)
+		{
+			response.getWriter().println("<tr>");
+			response.getWriter().println("<td>");
+			response.getWriter().println(order.getId());
+			response.getWriter().println("</td>");
+			response.getWriter().println("<td>");
+			for(Pizza p: order.getOrders())
+			{
+				response.getWriter().print(p.getToppings()+",");
+			}
+			response.getWriter().println("</td>");
+//			response.getWriter().println("<td>");
+//			response.getWriter().println(order.);
+//			response.getWriter().println("</td>");
+			response.getWriter().println("<td>");
+			response.getWriter().println("<form action='./root' method='post'>");
+			response.getWriter().println("<input type='hidden' name='orderId' value="+ order.getId()+ ">");
+			response.getWriter().println("</form>");
+			response.getWriter().println("</td>");
+			response.getWriter().println("</tr>");
+		}
+		response.getWriter().println("</table>");
+
+		
 		
 	}
 
@@ -36,7 +68,9 @@ public class Root extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		Order order = new Order();
+//		order = Database.find(request.getparam);
+//		order.incstate();
 		doGet(request, response);
 	}
 
