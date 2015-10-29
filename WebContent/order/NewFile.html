@@ -11,63 +11,121 @@
 		<form method="post" action="./CreateOrder" id="Order">
 			<table>
 				<tr>
-					<td>Cheese Margherita</td>
+					<td><input type="checkbox" name="pizza" value="mg" id="mg-sel">Cheese Margherita</td>
 					<td>&emsp;&emsp; Size: 
-						<select name="mg-size">
+						<select name="mg-size" id="mg-size">
 						  <option value="small">Small</option>
 						  <option value="medium">Medium</option>
 						  <option value="large">Large</option>
 						</select>					
 					</td>
-					<td>&emsp;&emsp; Quantity: <input type="number" min="0" value="0" name="mg" style="border:0px;width:35px;" id="mg"><br/></td>
+					<td>&emsp;&emsp; Quantity: <input type="number" min="1" value="1" name="mg" style="width:35px;" id="mg-q"><br/></td>
 				</tr>
 				<tr>
-					<td>Pepperoni Pizza</td>
+					<td><input type="checkbox" name="pizza" value="pep" id="pep-sel">Pepperoni Pizza</td>
 					<td>&emsp;&emsp; Size: 
-						<select name="pep-size">
+						<select name="pep-size" id="pep-size">
 						  <option value="small">Small</option>
 						  <option value="medium">Medium</option>
 						  <option value="large">Large</option>
 						</select>					
 					</td>
-					<td>&emsp;&emsp; Quantity: <input type="number" min="0" value="0" name="pep" style="border:0px;width:35px;" id="pep"><br/></td>
+					<td>&emsp;&emsp; Quantity: <input type="number" min="1" value="1" name="pep" style="width:35px;" id="pep-q"><br/></td>
 				</tr>
 				<tr>
-					<td>Farmhouse</td>
+					<td><input type="checkbox" name="pizza" value="fh" id="fh-sel">Farmhouse</td>
 					<td>&emsp;&emsp; Size: 
-						<select name="fh-size">
+						<select name="fh-size" id="fh-size">
 						  <option value="small">Small</option>
 						  <option value="medium">Medium</option>
 						  <option value="large">Large</option>
 						</select>					
 					</td>
-					<td>&emsp;&emsp; Quantity: <input type="number" min="0" value="0" name="fh" style="border:0px;width:35px;" id="fh"><br/></td>
+					<td>&emsp;&emsp; Quantity: <input type="number" min="1" value="1" name="fh" style="width:35px;" id="fh-q"><br/></td>
 				</tr>
 				<tr>
-					<td>Moster Deep Dish</td>
+					<td><input type="checkbox" name="pizza" value="dd" id="dd-sel">Moster Deep Dish</td>
 					<td>&emsp;&emsp; Size: 
-						<select name="dd-size">
+						<select name="dd-size" id="dd-size">
 						  <option value="small">Small</option>
 						  <option value="medium">Medium</option>
 						  <option value="large">Large</option>
 						</select>					
 					</td>
-					<td>&emsp;&emsp; Quantity: <input type="number" min="0" value="0" name="dd" style="border:0px;width:35px;" id="dd"><br/></td>
+					<td>&emsp;&emsp; Quantity: <input type="number" min="1" value="1" name="dd" style="width:35px;" id="dd-q"><br/></td>
 				</tr>
 			</table>
 			<input type="submit" value="Place Order">
 		</form>
 
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 		<script type="text/javascript">
-			var form = document.getElementById("Order");
-			form.onsubmit = function() {
-				if(document.getElementById('mg').value==0 && document.getElementById('fh').value==0 && document.getElementById('dd').value==0 && document.getElementById('pep').value==0)
-				{
-					alert('Please select at least one pizza!');
-					return false;
-				}
-				return true;
-			}
+			$(document).ready(function () {
+				$('#mg-size').attr('disabled', 'disabled');
+				$('#fh-size').attr('disabled', 'disabled');
+				$('#pep-size').attr('disabled', 'disabled');
+				$('#dd-size').attr('disabled', 'disabled');
+		        document.getElementById('pep-q').value=0;
+		        document.getElementById('dd-q').value=0;
+		        document.getElementById('mg-q').value=0;
+		        document.getElementById('fh-q').value=0;
+		        document.getElementById("pep-q").disabled = true;
+		        document.getElementById("mg-q").disabled = true;
+		        document.getElementById("dd-q").disabled = true;
+		        document.getElementById("fh-q").disabled = true;
+
+			});
+			$('#dd-sel').on("click",function(){
+			    if ($("#dd-sel").is(":checked")) {
+			        $('#dd-size').prop('disabled',false);
+			        document.getElementById('dd-q').value=1;
+		        	document.getElementById("dd-q").disabled = false;			        
+			    }
+			    else {
+			        $('#dd-size').prop('disabled', 'disabled');
+			        document.getElementById('dd-q').value=0;
+		        	document.getElementById("dd-q").disabled = true;			        
+			    }				
+			});
+
+			$('#pep-sel').on("click",function(){
+			    if ($("#pep-sel").is(":checked")) {
+			        $('#pep-size').prop('disabled',false);
+			        document.getElementById('pep-q').value=1;			        
+		        	document.getElementById("pep-q").disabled = false;			        
+			    }
+			    else {
+			        $('#pep-size').prop('disabled', 'disabled');
+			        document.getElementById('pep-q').value=0;
+		        	document.getElementById("pep-q").disabled = true;			        
+			    }				
+			});
+
+			$('#fh-sel').on("click",function(){
+			    if ($("#fh-sel").is(":checked")) {
+			        $('#fh-size').prop('disabled',false);
+			        document.getElementById('fh-q').value=1;			        
+		        	document.getElementById("fh-q").disabled = false;			        
+			    }
+			    else {
+			       	$('#fh-size').prop('disabled', 'disabled');
+			        document.getElementById('fh-q').value=0;
+		        	document.getElementById("fh-q").disabled = true;			        
+			    }				
+			});
+
+			$('#mg-sel').on("click",function(){
+			    if ($("#mg-sel").is(":checked")) {
+			        $('#mg-size').prop('disabled',false);
+			        document.getElementById('mg-q').value=1;
+		        	document.getElementById("mg-q").disabled = false;			        
+			    }
+			    else {
+			        $('#mg-size').prop('disabled', 'disabled');
+			        document.getElementById('mg-q').value=0;
+		        	document.getElementById("mg-q").disabled = true;			        
+			    }				
+			});
 		</script>
 	</body>
 </html>
