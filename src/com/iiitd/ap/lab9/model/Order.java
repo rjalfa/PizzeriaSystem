@@ -6,7 +6,14 @@ public class Order {
 	private int id;
 	private HashMap<Pizza,Integer> orders = new HashMap<>();
 	private Customer customer = new Customer();
+	private int status; 
 	
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
 	public int getId() {
 		return id;
 	}

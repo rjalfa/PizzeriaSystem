@@ -1,5 +1,4 @@
 package com.iiitd.ap.lab9;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -24,6 +23,7 @@ public final class Database {
 	{
 		Order order = new Order();
 		order.setId(orders.size()+1);
+		order.setStatus(0);
 		return order;
 	}
 	
@@ -33,4 +33,59 @@ public final class Database {
 		return order;
 	}
 	
+	public static Order trackOrder(int id)
+	{
+		if(id > orders.size()) return null;
+		return orders.get(id-1);
+	}
+	
+	public static Customer queryUser(String phone)
+	{
+		for(Customer i : users)
+		{
+			if(i.getMobileNo().equals(phone)) return i;
+		}
+		return null;
+	}
+	
+	public static void updateOrderState(int id)
+	{
+		if(id > orders.size()) return;
+		Order order = orders.get(id-1);
+		if(order.getStatus() == 6) return;
+		order.setStatus(order.getStatus() + 1);
+	}
+	
+	public static ArrayList<Order> getOrders()
+	{
+		return orders;
+	}
+	
+	public static ArrayList<Order> getCompletedOrders()
+	{
+		ArrayList<Order> arr = new ArrayList<>();
+		for(Order i : orders) if(i.getStatus() == 6) arr.add(i);
+		return arr;
+	}
+	
+	public static ArrayList<Order> getIncompleteOrders()
+	{
+		ArrayList<Order> arr = new ArrayList<>();
+		for(Order i : orders) if(i.getStatus() != 6) arr.add(i);
+		return arr;
+	}
+	
+	public static String stateVerbose(int x)
+	{
+		switch(x)
+		{
+			case 1:return "Order Placed";
+			case 2:return "Preparation";
+			case 3:return "Bake";
+			case 4:return "Quality Check";
+			case 5:return "Out for delivery";
+			case 6:return "Delivered";
+		}
+		return "";
+	}
 }
