@@ -72,10 +72,10 @@
 			    return null;
 			}
 			document.getElementById("OrderIDHead").innerText += readCookie("orderID");
-			//alert(readCookie("orderID"));
+
 			var form = document.getElementById("Order");
 			form.onsubmit = function() {
-				if(document.getElementById('mg').value==0 && document.getElementById('fh').value==0 && document.getElementById('dd').value==0 && document.getElementById('pep').value==0)
+				if(document.getElementById('mg-q').value==0 && document.getElementById('fh-q').value==0 && document.getElementById('dd-q').value==0 && document.getElementById('pep-q').value==0)
 				{
 					alert('Please select at least one pizza!');
 					return false;
