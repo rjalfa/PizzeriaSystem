@@ -8,7 +8,7 @@
 
 	<body>
 		<h1>Please select your order:</h1>
-		<form method="post" action="./CreateOrder">
+		<form method="post" action="./CreateOrder" id="Order">
 			<table>
 				<tr>
 					<td>Cheese Margherita</td>
@@ -19,7 +19,7 @@
 						  <option value="large">Large</option>
 						</select>					
 					</td>
-					<td>&emsp;&emsp; Quantity: <input type="number" min="0" value="0" name="mg" style="border:0px;width:35px;"><br/></td>
+					<td>&emsp;&emsp; Quantity: <input type="number" min="0" value="0" name="mg" style="border:0px;width:35px;" id="mg"><br/></td>
 				</tr>
 				<tr>
 					<td>Pepperoni Pizza</td>
@@ -30,7 +30,7 @@
 						  <option value="large">Large</option>
 						</select>					
 					</td>
-					<td>&emsp;&emsp; Quantity: <input type="number" min="0" value="0" name="pep" style="border:0px;width:35px;"><br/></td>
+					<td>&emsp;&emsp; Quantity: <input type="number" min="0" value="0" name="pep" style="border:0px;width:35px;" id="pep"><br/></td>
 				</tr>
 				<tr>
 					<td>Farmhouse</td>
@@ -41,7 +41,7 @@
 						  <option value="large">Large</option>
 						</select>					
 					</td>
-					<td>&emsp;&emsp; Quantity: <input type="number" min="0" value="0" name="fh" style="border:0px;width:35px;"><br/></td>
+					<td>&emsp;&emsp; Quantity: <input type="number" min="0" value="0" name="fh" style="border:0px;width:35px;" id="fh"><br/></td>
 				</tr>
 				<tr>
 					<td>Moster Deep Dish</td>
@@ -52,10 +52,22 @@
 						  <option value="large">Large</option>
 						</select>					
 					</td>
-					<td>&emsp;&emsp; Quantity: <input type="number" min="0" value="0" name="dd" style="border:0px;width:35px;"><br/></td>
+					<td>&emsp;&emsp; Quantity: <input type="number" min="0" value="0" name="dd" style="border:0px;width:35px;" id="dd"><br/></td>
 				</tr>
 			</table>
 			<input type="submit" value="Place Order">
 		</form>
+
+		<script type="text/javascript">
+			var form = document.getElementById("Order");
+			form.onsubmit = function() {
+				if(document.getElementById('mg').value==0 && document.getElementById('fh').value==0 && document.getElementById('dd').value==0 && document.getElementById('pep').value==0)
+				{
+					alert('Please select at least one pizza!');
+					return false;
+				}
+				return true;
+			}
+		</script>
 	</body>
 </html>
