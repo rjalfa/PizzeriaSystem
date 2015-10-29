@@ -5,9 +5,13 @@ import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.iiitd.ap.lab9.Database;
+import com.iiitd.ap.lab9.model.Order;
 
 /**
  * Servlet implementation class NewOrder
@@ -29,8 +33,12 @@ public class NewOrder extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		Order order = Database.newOrder();
+		request.getSession().setAttribute("order",order);
+		response.addCookie(new Cookie("orderID",""+order.getId()));
 		RequestDispatcher view = request.getRequestDispatcher("/order/NewFile.html");
 		view.forward(request, response);
+		//response.addCookie(new Cookie("orderID",""+order.getId()));
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 

@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public class Order {
 	private int id;
-	private ArrayList<Pizza> orders;
-	private Customer customer;
-
+	private ArrayList<Pizza> orders = new ArrayList<>();
+	private Customer customer = new Customer();
+	
 	public int getId() {
 		return id;
 	}

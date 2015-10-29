@@ -35,8 +35,10 @@ public class CreateOrder extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Order order = new Order();
+		//Order order = new Order();
+		Order order = (Order) request.getSession().getAttribute("order");
 		order = createOrder(order,request,response);
+		request.getSession().setAttribute("order",order);
 		doGet(request, response);
 	}
 	
@@ -46,7 +48,7 @@ public class CreateOrder extends HttpServlet {
 		String[] temp = new String[2];
 		for(String pizza : this.pizzas)
 		{
-			if(Integer.parseInt(req.getParameter(pizza)) > 0)
+			if(req.getParameter(pizza)!=null && Integer.parseInt(req.getParameter(pizza)) > 0)
 			{
 				temp[0] = req.getParameter(pizza + "-size");
 				temp[1] = req.getParameter(pizza);
