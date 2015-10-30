@@ -45,9 +45,9 @@ public class NewOrder extends HttpServlet {
 		   }
 		  }
 		}
-		response.addCookie(new Cookie("orderID",""+order.getId()));
+		response.addCookie(new Cookie("orderID",order.getId()));
 		
-		System.out.printf("[INFO] Session order ID Check: %d\n",((Order)request.getSession(false).getAttribute("order")).getId());
+		System.out.printf("[INFO] Session order ID Check: %s\n",((Order)request.getSession(false).getAttribute("order")).getId());
 		RequestDispatcher view = request.getRequestDispatcher("/order/NewFile.html");
 		view.forward(request, response);
 		

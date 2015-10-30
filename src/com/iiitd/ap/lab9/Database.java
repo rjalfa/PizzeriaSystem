@@ -28,7 +28,7 @@ public final class Database {
 	
 	public static Order finaliseOrder(Order order,String[] s)
 	{
-		System.out.printf("[MESSAGE] Order ID %d sent for Commit\n",order.getId());
+		System.out.printf("[MESSAGE] Order ID %s sent for Commit\n",order.getId());
 		Customer u = new Customer();
 		u.setName(s[0]);
 		u.setMobileNo(s[1]);
@@ -41,7 +41,7 @@ public final class Database {
 	
 	public static Order createOrder(Order order,HashMap<String,String[]> h)
 	{
-		System.out.printf("[MESSAGE] Order ID %d update members\n",order.getId());
+		System.out.printf("[MESSAGE] Order ID %s update members\n",order.getId());
 		HashMap<Pizza,Integer> H = order.getOrders();
 		for(String key : h.keySet())
 		{

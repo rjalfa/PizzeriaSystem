@@ -32,7 +32,7 @@ public class FinalPage extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response, Order order) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().println("<html><body>");
-		response.getWriter().printf("Order ID %d Confirmed.<br/>",order.getId());
+		response.getWriter().printf("Order ID %s Confirmed.<br/>",order.getId());
 		response.getWriter().println("<a href=\"./\" style=\"color:blue;\">Return to home page</a>");
 		response.getWriter().println("</body></html>");
 		request.getSession().invalidate();
