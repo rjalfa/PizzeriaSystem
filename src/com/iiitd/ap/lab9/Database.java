@@ -19,8 +19,9 @@ public final class Database {
 	
 	public static Order newOrder()
 	{
+		System.out.println("[MESSAGE] New Order object Requested.");
 		Order order = new Order();
-		order.setId(orders.size()+1);
+		order.setId(System.currentTimeMillis());
 		order.setStatus(0);
 		return order;
 	}

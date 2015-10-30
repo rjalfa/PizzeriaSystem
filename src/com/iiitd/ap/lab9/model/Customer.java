@@ -1,6 +1,12 @@
 package com.iiitd.ap.lab9.model;
 
-public class Customer {
+import java.io.Serializable;
+
+public class Customer implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -9054236499911166969L;
 	private int id;
 	private String name;
 	private Address address;

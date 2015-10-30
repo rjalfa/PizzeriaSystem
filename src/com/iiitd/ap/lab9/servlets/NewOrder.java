@@ -35,9 +35,21 @@ public class NewOrder extends HttpServlet {
 		// TODO Auto-generated method stub
 		Order order = Database.newOrder();
 		request.getSession().setAttribute("order",order);
+		Cookie[] cookies = request.getCookies();
+
+		if (cookies != null) {
+		 for (Cookie cookie : cookies) {
+		   if (cookie.getName().equals("orderID")) {
+			   cookie.setMaxAge(0);
+			   System.out.println("[MESSAGE] Cleared Duplicate Cookies");
+		   }
+		  }
+		}
 		response.addCookie(new Cookie("orderID",""+order.getId()));
+		System.out.printf("[INFO] Session order ID Check: %d\n",((Order)request.getSession(false).getAttribute("order")).getId());
 		RequestDispatcher view = request.getRequestDispatcher("/order/NewFile.html");
 		view.forward(request, response);
+		
 		//response.addCookie(new Cookie("orderID",""+order.getId()));
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 	}

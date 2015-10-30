@@ -1,12 +1,17 @@
 package com.iiitd.ap.lab9.model;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class Order {
-	private int id;
+public class Order implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2060839169913042585L;
+	private long id;
 	private HashMap<Pizza,Integer> orders = new HashMap<>();
 	private Customer customer = new Customer();
-	private int status; 
+	private int status;
 	
 	public int getStatus() {
 		return status;
@@ -14,10 +19,10 @@ public class Order {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-	public int getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public HashMap<Pizza,Integer> getOrders() {

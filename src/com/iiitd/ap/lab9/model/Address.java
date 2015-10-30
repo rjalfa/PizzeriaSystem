@@ -1,7 +1,13 @@
 package com.iiitd.ap.lab9.model;
 
-public class Address implements Comparable<Address> {
+import java.io.Serializable;
 
+public class Address implements Comparable<Address>,Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7573318374269963968L;
 	private String street;
 	private String city;
 	private String pIN;

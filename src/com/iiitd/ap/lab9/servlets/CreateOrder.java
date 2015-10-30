@@ -3,6 +3,7 @@ package com.iiitd.ap.lab9.servlets;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import org.apache.catalina.ssi.SSIServlet;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.iiitd.ap.lab9.Database;
 import com.iiitd.ap.lab9.model.Order;
-import com.iiitd.ap.lab9.model.Pizza;
 
 /**
  * Servlet implementation class NewOrder
@@ -45,7 +45,9 @@ public class CreateOrder extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Order order = (Order) request.getSession().getAttribute("order");
+		if(request.getSession() == null) System.out.println("[ERROR] HttpSession Object NULL");
+		Order order = (Order) request.getSession(false).getAttribute("order");
+		System.out.println("[INFO] Order at CreateOrder toString: "+order);
 		order = createOrder(order,request,response);
 		request.getSession().setAttribute("order",order);
 		doGet(request, response,order);
