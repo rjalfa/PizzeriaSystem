@@ -43,7 +43,7 @@ public class Root extends HttpServlet {
 			response.getWriter().println(order.getId());
 			response.getWriter().println("</td>");
 			response.getWriter().println("<td>");
-			for(Pizza p: order.getOrders())
+			for(Pizza p: order.getOrders().keySet())
 			{
 				response.getWriter().print(p.getToppings()+",");
 			}
