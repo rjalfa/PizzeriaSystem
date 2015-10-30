@@ -8,7 +8,7 @@ public class Order implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 2060839169913042585L;
-	private long id;
+	private String id;
 	private HashMap<Pizza,Integer> orders = new HashMap<>();
 	private Customer customer = new Customer();
 	private int status;
@@ -19,10 +19,10 @@ public class Order implements Serializable{
 	public void setStatus(int status) {
 		this.status = status;
 	}
-	public long getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public HashMap<Pizza,Integer> getOrders() {

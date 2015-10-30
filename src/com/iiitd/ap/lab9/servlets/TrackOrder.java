@@ -45,7 +45,7 @@ public class TrackOrder extends HttpServlet {
 		Order order = new Order();
 		String orderId = request.getParameter("OrderID");
 		System.out.printf("[MESSAGE] Order ID %d track status POST\n",orderId);
-		order = Database.trackOrder(Long.parseLong(orderId));
+		order = Database.trackOrder(orderId);
 		doGet(request, response,order);
 	}
 }

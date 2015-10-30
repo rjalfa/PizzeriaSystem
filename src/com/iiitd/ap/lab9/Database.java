@@ -21,14 +21,14 @@ public final class Database {
 	{
 		System.out.println("[MESSAGE] New Order object Requested.");
 		Order order = new Order();
-		order.setId(System.currentTimeMillis()%1000000000);
+		order.setId(""+System.currentTimeMillis()%1000000000);
 		order.setStatus(1);
 		return order;
 	}
 	
 	public static Order finaliseOrder(Order order,String[] s)
 	{
-		System.out.printf("[MESSAGE] Order ID %d sent for Commit\n",order.getId());
+		System.out.printf("[MESSAGE] Order ID %s sent for Commit\n",order.getId());
 		Customer u = new Customer();
 		u.setName(s[0]);
 		u.setMobileNo(s[1]);
@@ -41,7 +41,7 @@ public final class Database {
 	
 	public static Order createOrder(Order order,HashMap<String,String[]> h)
 	{
-		System.out.printf("[MESSAGE] Order ID %d update members\n",order.getId());
+		System.out.printf("[MESSAGE] Order ID %s update members\n",order.getId());
 		HashMap<Pizza,Integer> H = order.getOrders();
 		for(String key : h.keySet())
 		{
@@ -51,9 +51,9 @@ public final class Database {
 		return order;
 	}
 	
-	public static Order trackOrder(long l)
+	public static Order trackOrder(String l)
 	{
-		for(Order o : orders) if(o.getId() == l) return o;
+		for(Order o : orders) if(o.getId().equals(l)) return o;
 		return null;
 	}
 	
@@ -66,10 +66,10 @@ public final class Database {
 		return null;
 	}
 	
-	public static void updateOrderState(int id)
+	public static void updateOrderState(String id)
 	{
 		Order order = null;
-		for(Order o : orders) if(o.getId() == id) {order = o;break;}
+		for(Order o : orders) if(o.getId().equals(id)) {order = o;break;}
 		if(order == null) return;
 		if(order.getStatus() == 6) return;
 		order.setStatus(order.getStatus() + 1);
