@@ -29,7 +29,7 @@ public class FinalPage extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response, Order order) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
@@ -46,8 +46,8 @@ public class FinalPage extends HttpServlet {
 		details[2] = request.getParameter("street");
 		details[3] = request.getParameter("city");
 		details[4] = request.getParameter("pin");
-		Database.finaliseOrder(order,details);
-		doGet(request, response);
+		order = Database.finaliseOrder(order,details);
+		doGet(request, response,order);
 	}
 
 }

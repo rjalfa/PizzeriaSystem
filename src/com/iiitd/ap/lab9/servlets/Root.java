@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.iiitd.ap.lab9.Database;
 import com.iiitd.ap.lab9.model.*;
 
 /**
@@ -29,14 +30,12 @@ public class Root extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Order> orders = new ArrayList<>();
+	protected void doGet(HttpServletRequest request, HttpServletResponse response, ArrayList<Order> orders) throws ServletException, IOException {
 		
 		response.getWriter().println("<html><body>");
 		response.getWriter().println("<h1>Welcome Admin!</h1>");
 		response.getWriter().println("<h2>View currently placed orders here:</h2>");
 		response.getWriter().println("<table><tr><th>Order ID</th><th>Pizzas</th><th>State</th><th>Update</th></tr>");
-//		response.getBufferSize();
 		for(Order order: orders)
 		{
 			response.getWriter().println("<tr>");
@@ -70,10 +69,8 @@ public class Root extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Order order = new Order();
-//		order = Database.find(request.getparam);
-//		order.incstate();
-		doGet(request, response);
+		ArrayList<Order> orders = Database.getIncompleteOrders();
+		doGet(request, response,orders);
 	}
 
 }
