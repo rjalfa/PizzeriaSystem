@@ -22,7 +22,7 @@ public final class Database {
 		System.out.println("[MESSAGE] New Order object Requested.");
 		Order order = new Order();
 		order.setId(System.currentTimeMillis()%1000000000);
-		order.setStatus(0);
+		order.setStatus(1);
 		return order;
 	}
 	

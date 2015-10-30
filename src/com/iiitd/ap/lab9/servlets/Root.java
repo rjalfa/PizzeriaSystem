@@ -30,8 +30,8 @@ public class Root extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response, ArrayList<Order> orders) throws ServletException, IOException {
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ArrayList<Order> orders = Database.getIncompleteOrders();
 		response.getWriter().println("<html><body>");
 		response.getWriter().println("<h1>Welcome Admin!</h1>");
 		response.getWriter().println("<h2>View currently placed orders here:</h2>");
@@ -69,8 +69,8 @@ public class Root extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Order> orders = Database.getIncompleteOrders();
-		doGet(request, response,orders);
+		
+		doGet(request, response);
 	}
 
 }
