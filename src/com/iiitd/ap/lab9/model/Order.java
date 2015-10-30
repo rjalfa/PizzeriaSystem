@@ -32,4 +32,12 @@ public class Order {
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
+	
+	public String toString()
+	{
+		String s = "";
+		for(Pizza p : orders.keySet()) s+= p.getToppings()+"("+p.getSize()+"):"+orders.get(p)+";";
+		if(s.trim().equals("")) return "Nothing Ordered";
+		return s;
+	}
 }

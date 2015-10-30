@@ -33,6 +33,7 @@ public final class Database {
 		Address a = new Address(s[2],s[3],s[4]);
 		u.setAddress(a);
 		order.setCustomer(u);
+		orders.add(order);
 		return order;
 	}
 	
