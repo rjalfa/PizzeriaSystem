@@ -21,7 +21,7 @@ public final class Database {
 	{
 		System.out.println("[MESSAGE] New Order object Requested.");
 		Order order = new Order();
-		order.setId(System.currentTimeMillis()%1000000000);
+		order.setId(""+System.currentTimeMillis()%1000000000);
 		order.setStatus(0);
 		return order;
 	}
@@ -51,9 +51,9 @@ public final class Database {
 		return order;
 	}
 	
-	public static Order trackOrder(long l)
+	public static Order trackOrder(String l)
 	{
-		for(Order o : orders) if(o.getId() == l) return o;
+		for(Order o : orders) if(o.getId().equals(l)) return o;
 		return null;
 	}
 	
@@ -66,10 +66,10 @@ public final class Database {
 		return null;
 	}
 	
-	public static void updateOrderState(int id)
+	public static void updateOrderState(String id)
 	{
 		Order order = null;
-		for(Order o : orders) if(o.getId() == id) {order = o;break;}
+		for(Order o : orders) if(o.getId().equals(id)) {order = o;break;}
 		if(order == null) return;
 		if(order.getStatus() == 6) return;
 		order.setStatus(order.getStatus() + 1);
