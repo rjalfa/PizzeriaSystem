@@ -1,16 +1,16 @@
 package com.iiitd.ap.lab9;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Vector;
 
 import com.iiitd.ap.lab9.model.Address;
-
 import com.iiitd.ap.lab9.model.Customer;
 import com.iiitd.ap.lab9.model.Order;
 import com.iiitd.ap.lab9.model.Pizza;
 
 public final class Database {
-	static private ArrayList<Customer> users = new ArrayList<>();
-	static private ArrayList<Order> orders = new ArrayList<>();
+	static private Vector<Customer> users = new Vector<>();
+	static private Vector<Order> orders = new Vector<>();
 	
 	public static void addUser(Customer user)
 	{
@@ -21,13 +21,14 @@ public final class Database {
 	{
 		System.out.println("[MESSAGE] New Order object Requested.");
 		Order order = new Order();
-		order.setId(System.currentTimeMillis());
+		order.setId(System.currentTimeMillis()%1000000000);
 		order.setStatus(0);
 		return order;
 	}
 	
 	public static Order finaliseOrder(Order order,String[] s)
 	{
+		System.out.printf("[MESSAGE] Order ID %d sent for Commit\n",order.getId());
 		Customer u = new Customer();
 		u.setName(s[0]);
 		u.setMobileNo(s[1]);
@@ -40,6 +41,7 @@ public final class Database {
 	
 	public static Order createOrder(Order order,HashMap<String,String[]> h)
 	{
+		System.out.printf("[MESSAGE] Order ID %d update members\n",order.getId());
 		HashMap<Pizza,Integer> H = order.getOrders();
 		for(String key : h.keySet())
 		{
@@ -49,10 +51,10 @@ public final class Database {
 		return order;
 	}
 	
-	public static Order trackOrder(int id)
+	public static Order trackOrder(long l)
 	{
-		if(id > orders.size()) return null;
-		return orders.get(id-1);
+		for(Order o : orders) if(o.getId() == l) return o;
+		return null;
 	}
 	
 	public static Customer queryUser(String phone)
@@ -66,13 +68,14 @@ public final class Database {
 	
 	public static void updateOrderState(int id)
 	{
-		if(id > orders.size()) return;
-		Order order = orders.get(id-1);
+		Order order = null;
+		for(Order o : orders) if(o.getId() == id) {order = o;break;}
+		if(order == null) return;
 		if(order.getStatus() == 6) return;
 		order.setStatus(order.getStatus() + 1);
 	}
 	
-	public static ArrayList<Order> getOrders()
+	public static Vector<Order> getOrders()
 	{
 		return orders;
 	}

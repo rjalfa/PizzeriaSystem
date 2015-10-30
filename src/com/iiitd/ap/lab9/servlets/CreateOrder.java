@@ -1,13 +1,12 @@
 package com.iiitd.ap.lab9.servlets;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import org.apache.catalina.ssi.SSIServlet;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -40,6 +39,18 @@ public class CreateOrder extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response,Order order) throws ServletException, IOException {
+		Cookie[] cookies = request.getCookies();
+
+		if (cookies != null) {
+		 for (Cookie cookie : cookies) {
+		   if (cookie.getName().equals("orderID")) {
+			   cookie.setMaxAge(0);
+			   System.out.println("[MESSAGE] Cleared Duplicate Cookies");
+		   }
+		  }
+		}
+		response.addCookie(new Cookie("orderID",""+order.getId()));
+		
 		RequestDispatcher view = request.getRequestDispatcher("/order/Details.html");
 		view.forward(request, response);
 	}
@@ -47,12 +58,13 @@ public class CreateOrder extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(request.getSession() == null) System.out.println("[ERROR] HttpSession Object NULL");
 		Order order = (Order) request.getSession(false).getAttribute("order");
-		System.out.println("[INFO] Order at CreateOrder toString: "+order);
 		order = createOrder(order,request,response);
 		request.getSession().setAttribute("order",order);
+		System.out.println("[INFO] Order at CreateOrder toString: "+order);
 		doGet(request, response,order);
 	}
 	
+	@SuppressWarnings("static-access")
 	protected Order createOrder(Order order,HttpServletRequest req,HttpServletResponse response) throws IOException
 	{
 		HashMap<String,String[]> order_details = new HashMap<>();

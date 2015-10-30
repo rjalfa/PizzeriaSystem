@@ -2,13 +2,13 @@ package com.iiitd.ap.lab9.servlets;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.iiitd.ap.lab9.Database;
 import com.iiitd.ap.lab9.model.Order;
 
 /**
@@ -31,6 +31,8 @@ public class TrackOrder extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response, Order order) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		response.getWriter().println(order);
+		response.getWriter().println("ORDER STATUS: "+Database.stateVerbose(order.getStatus()));
 	}
 
 	/**
@@ -42,15 +44,8 @@ public class TrackOrder extends HttpServlet {
 		// Find Order
 		Order order = new Order();
 		String orderId = request.getParameter("OrderID");
-		order = findOrder(orderId);
-		
+		System.out.printf("[MESSAGE] Order ID %d track status POST\n",orderId);
+		order = Database.trackOrder(Long.parseLong(orderId));
 		doGet(request, response,order);
 	}
-	
-	protected Order findOrder(String orderId)
-	{
-		//Find order from DB
-		return new Order();
-	}
-
 }
