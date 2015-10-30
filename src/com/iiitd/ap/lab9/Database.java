@@ -68,6 +68,7 @@ public final class Database {
 	
 	public static void updateOrderState(String id)
 	{
+		System.out.printf("[MESSAGE] Order ID %s update state request\n",id);
 		Order order = null;
 		for(Order o : orders) if(o.getId().equals(id)) {order = o;break;}
 		if(order == null) return;

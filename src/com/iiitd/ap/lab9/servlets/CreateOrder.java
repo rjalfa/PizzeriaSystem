@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.iiitd.ap.lab9.Database;
 import com.iiitd.ap.lab9.model.Order;
-import com.iiitd.ap.lab9.model.Pizza;
 
 /**
  * Servlet implementation class NewOrder
