@@ -15,7 +15,7 @@
 		<form method="post" action="./CreateOrder" id="Order">
 			<table>
 				<tr>
-					<td><input type="checkbox" name="pizza" value="mg" id="mg-sel">Cheese Margherita</td>
+					<td><input type="checkbox" name="mg" value="mg" id="mg-sel">Cheese Margherita</td>
 					<td>&emsp;&emsp; Size: 
 						<select name="mg-size" id="mg-size">
 						  <option value="small">Small</option>
@@ -23,10 +23,10 @@
 						  <option value="large">Large</option>
 						</select>					
 					</td>
-					<td>&emsp;&emsp; Quantity: <input type="number" min="1" value="1" name="mg" style="width:35px;" id="mg-q"><br/></td>
+					<td>&emsp;&emsp; Quantity: <input type="number" min="1" value="1" name="mg-qty" style="width:35px;" id="mg-q"><br/></td>
 				</tr>
 				<tr>
-					<td><input type="checkbox" name="pizza" value="pep" id="pep-sel">Pepperoni Pizza</td>
+					<td><input type="checkbox" name="pep" value="pep" id="pep-sel">Pepperoni Pizza</td>
 					<td>&emsp;&emsp; Size: 
 						<select name="pep-size" id="pep-size">
 						  <option value="small">Small</option>
@@ -34,10 +34,10 @@
 						  <option value="large">Large</option>
 						</select>					
 					</td>
-					<td>&emsp;&emsp; Quantity: <input type="number" min="1" value="1" name="pep" style="width:35px;" id="pep-q"><br/></td>
+					<td>&emsp;&emsp; Quantity: <input type="number" min="1" value="1" name="pep-qty" style="width:35px;" id="pep-q"><br/></td>
 				</tr>
 				<tr>
-					<td><input type="checkbox" name="pizza" value="fh" id="fh-sel">Farmhouse</td>
+					<td><input type="checkbox" name="fh" value="fh" id="fh-sel">Farmhouse</td>
 					<td>&emsp;&emsp; Size: 
 						<select name="fh-size" id="fh-size">
 						  <option value="small">Small</option>
@@ -45,10 +45,10 @@
 						  <option value="large">Large</option>
 						</select>					
 					</td>
-					<td>&emsp;&emsp; Quantity: <input type="number" min="1" value="1" name="fh" style="width:35px;" id="fh-q"><br/></td>
+					<td>&emsp;&emsp; Quantity: <input type="number" min="1" value="1" name="fh-qty" style="width:35px;" id="fh-q"><br/></td>
 				</tr>
 				<tr>
-					<td><input type="checkbox" name="pizza" value="dd" id="dd-sel">Monster Deep Dish</td>
+					<td><input type="checkbox" name="dd" value="dd" id="dd-sel">Monster Deep Dish</td>
 					<td>&emsp;&emsp; Size: 
 						<select name="dd-size" id="dd-size">
 						  <option value="small">Small</option>
@@ -56,7 +56,7 @@
 						  <option value="large">Large</option>
 						</select>					
 					</td>
-					<td>&emsp;&emsp; Quantity: <input type="number" min="1" value="1" name="dd" style="width:35px;" id="dd-q"><br/></td>
+					<td>&emsp;&emsp; Quantity: <input type="number" min="1" value="1" name="dd-qty" style="width:35px;" id="dd-q"><br/></td>
 				</tr>
 			</table>
 			<input type="submit" value="Place Order">
@@ -86,6 +86,14 @@
 				}
 				return true;
 			}
+		
+			window.onload = function() {
+			    if(!window.location.hash) {
+			        window.location = window.location + '#loaded';
+			        window.location.reload();
+			    }
+			}
+		
 			$(document).ready(function () {
 				$('#mg-size').attr('disabled', 'disabled');
 				$('#fh-size').attr('disabled', 'disabled');

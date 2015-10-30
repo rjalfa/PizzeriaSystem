@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.iiitd.ap.lab9.Database;
 import com.iiitd.ap.lab9.model.Order;
+import com.iiitd.ap.lab9.model.Pizza;
 
 /**
  * Servlet implementation class NewOrder
@@ -68,13 +69,13 @@ public class CreateOrder extends HttpServlet {
 	protected Order createOrder(Order order,HttpServletRequest req,HttpServletResponse response) throws IOException
 	{
 		HashMap<String,String[]> order_details = new HashMap<>();
-		String[] temp = new String[3];
 		for(String pizza : this.pizzas)
 		{
-			if(req.getParameter(pizza)!=null && Integer.parseInt(req.getParameter(pizza)) > 0)
+			if(req.getParameter(pizza) != null && Integer.parseInt(req.getParameter(pizza+"-qty")) > 0)
 			{
+				String[] temp = new String[3];
 				temp[0] = req.getParameter(pizza + "-size");
-				temp[1] = req.getParameter(pizza);
+				temp[1] = req.getParameter(pizza + "-qty");
 				temp[2] = pizza_names.get(pizza);
 				order_details.put(pizza,temp);
 			}
