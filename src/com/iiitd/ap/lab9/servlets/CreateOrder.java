@@ -40,16 +40,8 @@ public class CreateOrder extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response,Order order) throws ServletException, IOException {
-		response.getWriter().println("<h1>Order ID:" + order.getId() + "</h1>");
-		response.getWriter().println("<h4>Please enter delivery details</h4>");
-		response.getWriter().println("<form method='post' action='./FinalPage'>");
-		response.getWriter().println("Name: <input type='text' name='name'/><br/>");
-		response.getWriter().println("Phone: <input type='number' name='phone'/><br/>");
-		response.getWriter().println("Address:<br/> Street: <input type='text' name='street'/><br/>");
-		response.getWriter().println("City: <input type='text' name='city'/><br/>");
-		response.getWriter().println("Pin: <input type='text' name='pin'/><br/>");
-		response.getWriter().println("<input type='submit' name='Enter details'/><br/>");
-		response.getWriter().println("</form>");
+		RequestDispatcher view = request.getRequestDispatcher("/order/Details.html");
+		view.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
