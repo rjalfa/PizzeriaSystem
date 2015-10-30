@@ -32,6 +32,7 @@ public class Root extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArrayList<Order> orders = new ArrayList<>();
 		
+		response.getWriter().println("<html><body>");
 		response.getWriter().println("<h1>Welcome Admin!</h1>");
 		response.getWriter().println("<h2>View currently placed orders here:</h2>");
 		response.getWriter().println("<table><tr><th>Order ID</th><th>Pizzas</th><th>State</th><th>Update</th></tr>");
@@ -59,6 +60,7 @@ public class Root extends HttpServlet {
 			response.getWriter().println("</tr>");
 		}
 		response.getWriter().println("</table>");
+		response.getWriter().println("</body></html>");
 
 		
 		

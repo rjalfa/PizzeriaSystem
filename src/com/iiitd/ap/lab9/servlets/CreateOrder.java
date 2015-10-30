@@ -43,10 +43,12 @@ public class CreateOrder extends HttpServlet {
 		response.getWriter().println("<h1>Order ID:" + order.getId() + "</h1>");
 		response.getWriter().println("<h4>Please enter delivery details</h4>");
 		response.getWriter().println("<form method='post' action='./FinalPage'>");
-		response.getWriter().println("Name: <input type='text' name='name'/>");
-		response.getWriter().println("Phone: <input type='text' name='phone'/>");
-		response.getWriter().println("Address: <input type='text' name='address'/>");
-		response.getWriter().println("<input type='submit' name='Enter details'/>");
+		response.getWriter().println("Name: <input type='text' name='name'/><br/>");
+		response.getWriter().println("Phone: <input type='number' name='phone'/><br/>");
+		response.getWriter().println("Address:<br/> Street: <input type='text' name='street'/><br/>");
+		response.getWriter().println("City: <input type='text' name='city'/><br/>");
+		response.getWriter().println("Pin: <input type='text' name='pin'/><br/>");
+		response.getWriter().println("<input type='submit' name='Enter details'/><br/>");
 		response.getWriter().println("</form>");
 	}
 

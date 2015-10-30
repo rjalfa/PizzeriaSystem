@@ -7,10 +7,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.iiitd.ap.lab9.model.Order;
+
 /**
  * Servlet implementation class FinalPage
  */
 @WebServlet("/FinalPage")
+
 public class FinalPage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -35,6 +38,14 @@ public class FinalPage extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		Order order = (Order) request.getSession().getAttribute("order");
+		String[] details = new String[5];
+		details[0] = request.getParameter("name");
+		details[1] = request.getParameter("phone");
+		details[2] = request.getParameter("street");
+		details[3] = request.getParameter("city");
+		details[4] = request.getParameter("pin");
+		Database.finaliseOrder(order,details);
 		doGet(request, response);
 	}
 
