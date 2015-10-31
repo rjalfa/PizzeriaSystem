@@ -3,100 +3,138 @@
 	<head>
 		<meta charset="UTF-8">
 		<link rel="shortcut icon" href="http://www.google.com/s2/favicons?domain=www.iiitd.ac.in" type="image/x-icon">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/united/bootstrap.min.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 		<title>New Order &#8226; PizzeriaSystem</title>
+		<style type="text/css">
+			.delete-order
+			{
+				color:red;
+			}
+			.list-group-item
+			{
+				font-size: 30px;
+			}
+			.modal-dialog
+			{
+			  width: 70%;
+			}
+			.hero-feature-inactive:hover
+			{
+				background: #CFCFCF;
+			}
+			.hero-feature-active
+			{
+				background: #33FF99;
+			}
+		</style>
 	</head>
 
 	<body style="background-image:url('http://www.zastavki.com/pictures/1600x1200/2009/Food_Pizza_Filling_Pizza_011932_.jpg');background-size: 100% 100%;background-repeat:no-repeat;background-position:right bottom;" >
-	<div class="container">
-	<div class="row"><div class="col-lg-8"><h1>Pizzeria System</h1></div>
-	<div class="col-lg-4"><h1 id="OrderIDHead">Order ID:</h1></div></div>
-	<div class="row"><div class="col-lg-12" style="height:768px;"><h1>Please select your order:</h1><br/>
+	<!-- Modal -->
+		<div id="PizzaSelect" class="modal fade" role="dialog" width="700px">
+		  <div class="modal-dialog" width="700px">
 
-		<form method="post" action="./CreateOrder" id="Order">
-
-            <div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail">
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">Select Pizza</h4>
+		      </div>
+		      <div class="modal-body">
+		      	<div class="container-fluid"><div class="row">
+		        <div class="col-md-3 col-sm-6 hero-feature">
+                <div class="thumbnail hero-feature-active">
                 	<div class="image-container" style="height:248px;">
-		                <input type="checkbox" name="mg" value="mg" id="mg-sel"> Select
                     	<img src="http://cdn-image.myrecipes.com/sites/default/files/styles/300x300/public/image/recipes/su/10/02/pizzetta-margherita-pizza-su-x.jpg?itok=vE2-vQlo" style="height:255px;width:245px;" alt="" >
                     </div>
                     <div class="caption">
                         <h3>Cheese Margherita</h3>
-                        Size: 
-						<select name="mg-size" id="mg-size">
-						  <option value="small">Small</option>
-						  <option value="medium">Medium</option>
-						  <option value="large">Large</option>
-						</select><br/><br/>
-						Quantity: <input type="number" min="1" value="1" name="mg-qty" style="width:35px;" id="mg-q"><br/>
                     </div>
                 </div>
-            </div>
+            	</div>
 
             <div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail">
+                <div class="thumbnail hero-feature-inactive">
                 	<div class="image-container" style="height:248px;">
-						<input type="checkbox" name="pep" value="pep" id="pep-sel"> Select
                     	<img src="http://www.segielskiphoto.com/data/photos/151_1stuffed_crust_pizza.jpg" style="height:255px;width:245px;" alt="" >
                     </div>
                     <div class="caption">
                         <h3>Pepperoni Pizza</h3>
-                        Size: 
-						<select name="pep-size" id="pep-size">
-						  <option value="small">Small</option>
-						  <option value="medium">Medium</option>
-						  <option value="large">Large</option>
-						</select><br/><br/>
-						Quantity: <input type="number" min="1" value="1" name="pep-qty" style="width:35px;" id="pep-q"><br/>
                     </div>
                 </div>
-            </div>
+            	</div>
 
             <div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                	<div class="image-container" style="height:248px;"> 
-						<input type="checkbox" name="fh" value="fh" id="fh-sel"> Select
+                <div class="thumbnail hero-feature-inactive">
+                	<div class="image-container" style="height:248px;">
                     	<img src="http://wayoutwestaustin.com/wp-content/uploads/2012/12/SPpizza.jpg" style="height:255px;width:245px;" alt="" >
                     </div>
                     <div class="caption">
                         <h3>Farmhouse</h3>
-                        Size: 
-						<select name="fh-size" id="fh-size">
-						  <option value="small">Small</option>
-						  <option value="medium">Medium</option>
-						  <option value="large">Large</option>
-						</select><br/><br/>
-						Quantity: <input type="number" min="1" value="1" name="fh-qty" style="width:35px;" id="fh-q"><br/>
                     </div>
                 </div>
-            </div>
-
+            	</div>
 
             <div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                	<div class="image-container" style="height:248px;"> 
-						<input type="checkbox" name="dd" value="dd" id="dd-sel"> Select
+                <div class="thumbnail hero-feature-inactive">
+                	<div class="image-container" style="height:248px;">
                     	<img src="https://giordanos.com/cms/wp-content/uploads/2014/01/PizzaPull.jpg" style="height:255px;width:245px;" alt="" >
                     </div>
                     <div class="caption">
                         <h3>Monster Deep Dish</h3>
-                        Size: 
-						<select name="dd-size" id="dd-size">
-						  <option value="small">Small</option>
-						  <option value="medium">Medium</option>
-						  <option value="large">Large</option>
-						</select><br/><br/>
-						Quantity: <input type="number" min="1" value="1" name="dd-qty" style="width:35px;" id="dd-q"><br/>
                     </div>
                 </div>
-            </div>
+            	</div>
+		      </div>
+		      <div class="row">
+		      	<div class="col-lg-6">
+		      		<div class="btn-group btn-group-justified">
+					  <a href="#" class="btn btn-primary size-btn">SMALL</a>
+					  <a href="#" class="btn btn-default size-btn">MEDIUM</a>
+					  <a href="#" class="btn btn-default size-btn">LARGE</a>
+					</div>
+		      	</div>
+		      	<div class="col-lg-3" style="text-align:right;font-size:20px;">QUANTITY:</div>
+		      	<div class="col-lg-3">
+		      		<div class="input-group">
+			          <span class="input-group-btn">
+			              <button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">
+			                  <span class="glyphicon glyphicon-minus"></span>
+			              </button>
+			          </span>
+			          <input type="text" name="quant[1]" class="form-control input-number" value="1" min="1" max="10" disabled>
+			          <span class="input-group-btn">
+			              <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
+			                  <span class="glyphicon glyphicon-plus"></span>
+			              </button>
+			          </span>
+      				</div>
+		      	</div>
+		      </div>
+		  		</div></div>
+		      <div class="modal-footer">
+		      	<button type="button" class="btn btn-default" id="pizza-add-btn" data-dismiss="modal">ADD SELECTION</button>
+		        <button type="button" class="btn btn-default" data-dismiss="modal">CANCEL</button>
+		      </div>
+		    </div>
 
-			<input type="submit" value="Place Order">
-		</form>
+		  </div>
+		</div>
+	<div class="container">
+	<div class="row"><div class="col-lg-8"><h1>Pizzeria System</h1></div>
+	<div class="col-lg-4"><h1 id="OrderIDHead">Order ID:</h1></div></div>
+	<div class="row"><div class="col-lg-12" style="height:768px;"><h1>Please select your order:</h1><br/>
+		<center><h1>Current Order</h1></center>
+		  <div class="panel panel-default">
+				<div class="list-group" id="order-list">
+				</div>
+		  </div>
+		<button class="btn btn-lg btn-danger" data-toggle="modal" data-target="#PizzaSelect">Add Pizza</button>
+		<button class="btn btn-lg btn-primary" id="submit-order">Submit</button>
 	</div></div></div>
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 		<script type="text/javascript">
 			function readCookie(name) {
 			    var nameEQ = name + "=";
@@ -108,90 +146,105 @@
 			    }
 			    return null;
 			}
-			document.getElementById("OrderIDHead").innerText += readCookie("orderID");
-
-			var form = document.getElementById("Order");
-			form.onsubmit = function() {
-				if(document.getElementById('mg-q').value==0 && document.getElementById('fh-q').value==0 && document.getElementById('dd-q').value==0 && document.getElementById('pep-q').value==0)
-				{
-					alert('Please select at least one pizza!');
-					return false;
-				}
-				return true;
-			}
-		
+			$("#OrderIDHead").text($("#OrderIDHead").text()+readCookie("orderID"));
 			window.onload = function() {
 			    if(!window.location.hash) {
 			        window.location = window.location + '#loaded';
 			        window.location.reload();
 			    }
 			}
-		
-			$(document).ready(function () {
-				$('#mg-size').attr('disabled', 'disabled');
-				$('#fh-size').attr('disabled', 'disabled');
-				$('#pep-size').attr('disabled', 'disabled');
-				$('#dd-size').attr('disabled', 'disabled');
-		        document.getElementById('pep-q').value=0;
-		        document.getElementById('dd-q').value=0;
-		        document.getElementById('mg-q').value=0;
-		        document.getElementById('fh-q').value=0;
-		        document.getElementById("pep-q").disabled = true;
-		        document.getElementById("mg-q").disabled = true;
-		        document.getElementById("dd-q").disabled = true;
-		        document.getElementById("fh-q").disabled = true;
 
-			});
-			$('#dd-sel').on("click",function(){
-			    if ($("#dd-sel").is(":checked")) {
-			        $('#dd-size').prop('disabled',false);
-			        document.getElementById('dd-q').value=1;
-		        	document.getElementById("dd-q").disabled = false;			        
-			    }
-			    else {
-			        $('#dd-size').prop('disabled', 'disabled');
-			        document.getElementById('dd-q').value=0;
-		        	document.getElementById("dd-q").disabled = true;			        
-			    }				
+			$('.hero-feature').on('click',function()
+			{
+				$('.hero-feature > .thumbnail').removeClass('hero-feature-active');
+				$('.hero-feature > .thumbnail').addClass('hero-feature-inactive');
+				$(this).children('.thumbnail').removeClass('hero-feature-inactive');
+				$(this).children('.thumbnail').addClass('hero-feature-active');
 			});
 
-			$('#pep-sel').on("click",function(){
-			    if ($("#pep-sel").is(":checked")) {
-			        $('#pep-size').prop('disabled',false);
-			        document.getElementById('pep-q').value=1;			        
-		        	document.getElementById("pep-q").disabled = false;			        
+			$('.size-btn').on('click',function()
+			{
+				$('.size-btn').removeClass('btn-primary');
+				$('.size-btn').addClass('btn-default');
+				$(this).removeClass('btn-default');
+				$(this).addClass('btn-primary');
+			});
+			$('.btn-number').click(function(e){
+			    e.preventDefault();
+			    
+			    fieldName = $(this).attr('data-field');
+			    type      = $(this).attr('data-type');
+			    var input = $("input[name='"+fieldName+"']");
+			    var currentVal = parseInt(input.val());
+			    if (!isNaN(currentVal)) {
+			        if(type == 'minus') {
+			            
+			            if(currentVal > input.attr('min')) {
+			                input.val(currentVal - 1).change();
+			            } 
+			            if(parseInt(input.val()) == input.attr('min')) {
+			                $(this).attr('disabled', true);
+			            }
+
+			        } else if(type == 'plus') {
+
+			            if(currentVal < input.attr('max')) {
+			                input.val(currentVal + 1).change();
+			            }
+			            if(parseInt(input.val()) == input.attr('max')) {
+			                $(this).attr('disabled', true);
+			            }
+
+			        }
+			    } else {
+			        input.val(0);
 			    }
-			    else {
-			        $('#pep-size').prop('disabled', 'disabled');
-			        document.getElementById('pep-q').value=0;
-		        	document.getElementById("pep-q").disabled = true;			        
-			    }				
+			});
+			$('.input-number').focusin(function(){
+			   $(this).data('oldValue', $(this).val());
+			});
+			$('.input-number').change(function() {
+			    
+			    minValue =  parseInt($(this).attr('min'));
+			    maxValue =  parseInt($(this).attr('max'));
+			    valueCurrent = parseInt($(this).val());
+			    
+			    name = $(this).attr('name');
+			    if(valueCurrent >= minValue) {
+			        $(".btn-number[data-type='minus'][data-field='"+name+"']").removeAttr('disabled')
+			    } else {
+			        alert('Sorry, the minimum value was reached');
+			        $(this).val($(this).data('oldValue'));
+			    }
+			    if(valueCurrent <= maxValue) {
+			        $(".btn-number[data-type='plus'][data-field='"+name+"']").removeAttr('disabled')
+			    } else {
+			        alert('Sorry, the maximum value was reached');
+			        $(this).val($(this).data('oldValue'));
+			    }
 			});
 
-			$('#fh-sel').on("click",function(){
-			    if ($("#fh-sel").is(":checked")) {
-			        $('#fh-size').prop('disabled',false);
-			        document.getElementById('fh-q').value=1;			        
-		        	document.getElementById("fh-q").disabled = false;			        
-			    }
-			    else {
-			       	$('#fh-size').prop('disabled', 'disabled');
-			        document.getElementById('fh-q').value=0;
-		        	document.getElementById("fh-q").disabled = true;			        
-			    }				
+			$('.delete-order').click(function(){
+				$(this).closest("div").remove();
 			});
 
-			$('#mg-sel').on("click",function(){
-			    if ($("#mg-sel").is(":checked")) {
-			        $('#mg-size').prop('disabled',false);
-			        document.getElementById('mg-q').value=1;
-		        	document.getElementById("mg-q").disabled = false;			        
-			    }
-			    else {
-			        $('#mg-size').prop('disabled', 'disabled');
-			        document.getElementById('mg-q').value=0;
-		        	document.getElementById("mg-q").disabled = true;			        
-			    }				
+			$('#pizza-add-btn').click(function(){
+				pizza = "";
+				pizza += $(".hero-feature-active > .caption > h3").text()+",";
+				pizza += ($(".size-btn.btn-primary").text()+",").toLowerCase();
+				pizza += $(".input-number").val();
+				$("#order-list").html($("#order-list").html()+"<div class=\"list-group-item\">"+pizza+"<span style=\"font-size:35px\" class=\"glyphicon glyphicon-minus-sign pull-right delete-order\"></span></div>");
+			});
+
+			$('#submit-order').click(function(){
+				data = "";
+				if($('#order-list').children().length > 0)
+				{
+					$('#order-list > .list-group-item').each(function(){data+=$(this).text()+";";});
+					console.log(data);
+					$.post("./CreateOrder",{"data":data});
+				}
+				else alert("Please select atleast one pizza!!");
 			});
 		</script>
 	</body>
