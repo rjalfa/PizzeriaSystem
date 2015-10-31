@@ -2,7 +2,12 @@ package com.iiitd.ap.lab9.model;
 
 import java.io.Serializable;
 import java.util.HashMap;
-
+/**
+ * 
+ * @author Rounaq jhunjhunu Wala | 2014089
+ * @author Shrey Bagroy	| 2014099
+ *
+ */
 public class Order implements Serializable{
 	/**
 	 * 
