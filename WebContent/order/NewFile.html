@@ -224,7 +224,7 @@
 			    }
 			});
 
-			$('.delete-order').click(function(){
+			$(document.body).on('click','.delete-order',function(){
 				$(this).closest("div").remove();
 			});
 
