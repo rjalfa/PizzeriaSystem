@@ -1,7 +1,16 @@
 package com.iiitd.ap.lab9;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.EOFException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Vector;
+import java.util.concurrent.locks.ReentrantLock;
 
 import com.iiitd.ap.lab9.model.Address;
 import com.iiitd.ap.lab9.model.Customer;
@@ -11,6 +20,39 @@ import com.iiitd.ap.lab9.model.Pizza;
 public final class Database {
 	static private Vector<Customer> users = new Vector<>();
 	static private Vector<Order> orders = new Vector<>();
+	static private final ReentrantLock lock = new ReentrantLock();
+	
+	static
+	{
+		Order order = null;
+		ObjectInputStream inStream = null;
+		orders.clear();
+		File f = new File("./data");
+		if(!f.exists()) f.mkdir();
+		File[] dataFolder = (new File("./data")).listFiles();
+		try
+		{
+			for(int i=0;i<dataFolder.length;i++)
+			{
+				inStream = new ObjectInputStream(new BufferedInputStream(new FileInputStream("./data/"+dataFolder[i].getName())));
+				try{
+					while (true)
+					{	
+						order = (Order)inStream.readObject();
+						orders.add(order);
+					}
+				}
+				catch(EOFException e){
+					inStream.close();
+				}
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		System.out.println("[MESSAGE] File Prefetch complete. Status OK!!");
+	}
 	
 	public static void addUser(Customer user)
 	{
@@ -36,6 +78,21 @@ public final class Database {
 		u.setAddress(a);
 		order.setCustomer(u);
 		orders.add(order);
+		lock.lock();
+		try
+		{
+			ObjectOutputStream outStream = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("./data/ORDER" + order.getId()+".dat")));
+			outStream.writeObject(order);
+			outStream.close();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			lock.unlock();
+		}
 		return order;
 	}
 	
