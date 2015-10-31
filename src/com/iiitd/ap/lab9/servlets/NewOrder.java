@@ -16,6 +16,12 @@ import com.iiitd.ap.lab9.model.Order;
 /**
  * Servlet implementation class NewOrder
  */
+/**
+ * 
+ * @author Rounaq jhunjhunu Wala | 2014089
+ * @author Shrey Bagroy	| 2014099
+ *
+ */
 @WebServlet("/NewOrder")
 public class NewOrder extends HttpServlet {
 	private static final long serialVersionUID = 1L;
