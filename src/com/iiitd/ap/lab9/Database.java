@@ -131,6 +131,16 @@ public final class Database {
 		if(order == null) return;
 		if(order.getStatus() == 6) return;
 		order.setStatus(order.getStatus() + 1);
+		try
+		{
+			ObjectOutputStream outStream = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("./data/ORDER" + order.getId()+".dat")));
+			outStream.writeObject(order);
+			outStream.close();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 	
 	public static Vector<Order> getOrders()
