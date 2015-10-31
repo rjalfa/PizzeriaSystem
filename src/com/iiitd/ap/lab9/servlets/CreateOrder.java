@@ -1,7 +1,7 @@
 package com.iiitd.ap.lab9.servlets;
 
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,14 +20,7 @@ import com.iiitd.ap.lab9.model.Order;
 @WebServlet("/CreateOrder")
 public class CreateOrder extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private static final String[] pizzas = {"mg","pep","fh","dd"};
-    private static HashMap<String,String> pizza_names = new HashMap<>();
-    static{
-    	pizza_names.put("mg", "Margherita");
-    	pizza_names.put("pep", "Pepperoni Pizza");
-    	pizza_names.put("fh", "Farmhouse");
-    	pizza_names.put("dd", "Monster Deep Dish");
-    }
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -64,24 +57,12 @@ public class CreateOrder extends HttpServlet {
 		doGet(request, response,order);
 	}
 	
-	@SuppressWarnings("static-access")
 	protected Order createOrder(Order order,HttpServletRequest req,HttpServletResponse response) throws IOException
 	{
-		HashMap<String,String[]> order_details = new HashMap<>();
-		for(String pizza : this.pizzas)
-		{
-			if(req.getParameter(pizza) != null && Integer.parseInt(req.getParameter(pizza+"-qty")) > 0)
-			{
-				String[] temp = new String[3];
-				temp[0] = req.getParameter(pizza + "-size");
-				temp[1] = req.getParameter(pizza + "-qty");
-				temp[2] = pizza_names.get(pizza);
-				order_details.put(pizza,temp);
-			}
-		}
+		System.out.println(req.getParameter("data"));
+		ArrayList<String[]> order_details = new ArrayList<>();
+		String[] t = req.getParameter("data").split(";");
+		for(String s : t) order_details.add(s.split(","));
 		return Database.createOrder(order, order_details);
 	}
-	
-	
-
 }

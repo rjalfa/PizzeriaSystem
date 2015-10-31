@@ -96,15 +96,11 @@ public final class Database {
 		return order;
 	}
 	
-	public static Order createOrder(Order order,HashMap<String,String[]> h)
+	public static Order createOrder(Order order,ArrayList<String[]> order_details)
 	{
 		System.out.printf("[MESSAGE] Order ID %s update members\n",order.getId());
 		HashMap<Pizza,Integer> H = order.getOrders();
-		for(String key : h.keySet())
-		{
-			String[] a = h.get(key);
-			H.put(new Pizza(a[2],a[0]),Integer.parseInt(a[1]));
-		}
+		for(String[] key : order_details) H.put(new Pizza(key[0],key[1]),Integer.parseInt(key[2]));
 		return order;
 	}
 	
