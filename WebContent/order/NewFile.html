@@ -135,6 +135,7 @@
 		<button class="btn btn-lg btn-danger" data-toggle="modal" data-target="#PizzaSelect">Add Pizza</button>
 		<button class="btn btn-lg btn-primary" id="submit-order">Submit</button>
 	</div></div></div>
+		<form method="post" action="./CreateOrder" id="placeOrder"><input type="hidden" name="data" value=""/></form> 
 		<script type="text/javascript">
 			function readCookie(name) {
 			    var nameEQ = name + "=";
@@ -241,8 +242,8 @@
 				if($('#order-list').children().length > 0)
 				{
 					$('#order-list > .list-group-item').each(function(){data+=$(this).text()+";";});
-					console.log(data);
-					$.post("./CreateOrder",{"data":data});
+					$('#placeOrder > input').val(data);
+					$('#placeOrder').submit();
 				}
 				else alert("Please select atleast one pizza!!");
 			});
